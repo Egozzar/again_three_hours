@@ -1,6 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createApp } from 'vue';
+import App from "@/App";
+import componentsUI from '@/components/UI/script';
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App);
+componentsUI.forEach(item => app.component(item.name, item));
+
+const vm = app.mount('#app');

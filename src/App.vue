@@ -1,30 +1,57 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+	<div class="app">
+		<post-form
+			@create-post="createPost"
+		/>
+		<post-list
+			:posts-children="posts"
+			@remove-post="removePost"
+		/>
+	</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import PostList from "@/components/PostList";
+import PostForm from "@/components/PostForm";
 
-#nav {
-  padding: 30px;
+export default {
+	data() {
+		return {
+			titleModel: '',
+			bodyModel: '',
+			posts: [
+				{id: 1, title: 'пост о JavaScript', body: 'it is language for the programming'},
+				{id: 2, title: 'пост о HTML', body: 'it is skeleton for the page of the document'},
+				{id: 3, title: 'пост о CSS', body: 'it is style for all'},
+				{id: 4, title: 'пост о VUE', body: 'it is framework for the frontend'},
+			]
+		}
+	},
+	methods: {
+		createPost({title, body}) {
+			let id = this.posts.length ? this.posts.length + 1 : 1;
+			this.posts.push({id, title, body});
+		},
+		removePost(obj) {
+			this.posts = this.posts.filter(item => item !== obj);
+		}
+	},
+	props: {},
+	emits: {},
+	components: {
+		PostList,
+		PostForm,
+	},
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+<style scoped>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.app {
+	padding: 80px;
 }
 </style>
