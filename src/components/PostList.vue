@@ -1,7 +1,10 @@
 <template>
+	<div v-if="!postsChildren">
+		<h3>Идёт загрузка постов ...</h3>
+	</div>
 	<div
 		class="list"
-		v-if="postsChildren.length"
+		v-else-if="postsChildren.length"
 	>
 		<h3>Список постов</h3>
 		<post-item
@@ -11,7 +14,10 @@
 			@remove-post="removePost"
 		/>
 	</div>
-	<h3 v-else>Добавьте пост</h3>
+	<div v-else>
+		<h3 >Добавьте пост</h3>
+	</div>
+
 </template>
 
 <script>

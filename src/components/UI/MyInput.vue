@@ -1,5 +1,7 @@
 <template>
 		<input
+			@input="templModel"
+			:value="modelValue"
 			type="text"
 			class="inpt"
 			:placeholder="myPlaceholder"
@@ -11,11 +13,16 @@ export default {
 	data() {
 		return {}
 	},
-	methods: {},
+	methods: {
+		templModel(event) {
+			this.$emit('update:modelValue', event.target.value);
+		}
+	},
 	props: {
 		myPlaceholder: {
 			type: String,
-		}
+		},
+		modelValue: [String, Number],
 	},
 	emits: {},
 	components: {},
