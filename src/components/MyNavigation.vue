@@ -2,12 +2,17 @@
 	<div class="mnv">
 		<h2>Welcome! It is Vue.js!</h2>
 		<div>
-			<my-button @click="$router.push('/')">Стартовая страница</my-button>
-			<my-button @click="$router.push('/posts')">Страница с постами</my-button>
+			<my-button
+				@click="$router.push('/')"
+			>Стартовая страница</my-button>
+			<my-button
+				@click="$router.push('/posts')"
+			>Страница с постами</my-button>
 		</div>
 	</div>
 </template>
 <script>
+import MyButton from "@/components/UI/MyButton";
 export default {
 	data() {
 		return {}
@@ -15,7 +20,7 @@ export default {
 	methods: {},
 	props: {},
 	emits: {},
-	components: {},
+	components: {MyButton},
 }
 </script>
 <style scoped>
@@ -23,8 +28,10 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: yellowgreen;
-	box-shadow: 2px 2px 2px teal;
+	background-color: #F5F5DC;
+	color: teal;
+	box-shadow: 2px 2px 4px teal;
 	padding: 20px;
 }
+
 </style>
